@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Details</title>
+</head>
+<body>
+
+{% if course == "python" %}
+
+<h1>Python Programming</h1>
+
+<p>Duration : 3 Months</p>
+
+<p>
+Topics:
+Python Basics,
+Functions,
+OOP,
+File Handling,
+Projects
+</p>
+
+{% elif course == "java" %}
+
+<h1>Java Programming</h1>
+
+<p>Duration : 3 Months</p>
+
+{% elif course == "web" %}
+
+<h1>Web Development</h1>
+
+<p>HTML, CSS, JavaScript</p>
+
+{% elif course == "fullstack" %}
+
+<h1>Full Stack Development</h1>
+
+<p>Frontend + Backend + Database</p>
+
+{% endif %}
+
+</body>
+</html>

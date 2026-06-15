@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Park Academy</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <div class="logo-section">
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo">
+            <h2>TECH PARK ACADEMY</h2>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#courses">Courses</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </nav>
+</header>
+
+<section id="home" class="hero">
+
+    <div class="hero-content">
+
+        <h1>Welcome to Tech Park Academy</h1>
+
+        <p>
+            <b>CREATION / INNOVATION / DEVELOPMENT</b>
+        </p>
+
+        <a href="#courses" class="btn">
+            Explore Courses
+        </a>
+
+    </div>
+
+</section>
+
+<section id="about" class="about">
+
+    <h2>About Us</h2>
+
+    <p>
+        Tech Park Academy is a professional training institute in Karaikudi
+        offering Python, Java, Web Development, C Programming,
+        Full Stack Development, Tally Prime, MS Office,
+        Hardware & Software Training, Spoken English and Internship Programs.
+        We focus on practical learning and career-oriented training.
+</p>
+
+</section>
+
+<section class="md-section">
+
+     <!-- <div class="md-image"> 
+        <img src="{{ url_for('static', filename='images/mdsir.jpg') }}" alt="Managing Director">
+    </div> -->
+
+    <div class="md-image">
+    <div class="profile-avatar">
+        👨‍💼
+    </div>
+</div>
+
+    <div class="md-content">
+
+        <h2>Message from Managing Director</h2>
+
+        <p>
+            Welcome to Tech Park Academy. Our mission is to provide
+            quality education and practical training that empowers
+            students with industry-ready skills. We believe in
+            Creation, Innovation and Development, helping every
+            learner achieve their career goals.
+        </p>
+
+        <h3>Managing Director</h3>
+        <p>Tech Park Academy, Karaikudi</p>
+
+    </div>
+
+</section>
+
+<section id="courses" class="courses">
+
+    <h2>Our Courses</h2>
+
+    <div class="course-container">
+
+        <div class="card">
+            <h3>Python Programming</h3>
+            <p>Learn Python from basics to advanced with projects.</p>
+            <a href="/enquiry/python" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <h3>Java Programming</h3>
+            <p>Master Core Java and object-oriented programming.</p>
+             <a href="/enquiry/java" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>HTML, CSS and JavaScript website development.</p>
+            <a href="/enquiry/web" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <h3>C Programming</h3>
+            <p>Strong programming fundamentals and logic building.</p>
+             <a href="/enquiry/c" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <h3>Full Stack Development</h3>
+            <p>Frontend and backend development with projects.</p>
+             <a href="/enquiry/fullstack" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+            <h3>Internship Training</h3>
+            <p>Real-time project experience and industry exposure.</p>
+            <a href="/enquiry/internship" class="btn">Enquire Now</a>
+        </div>
+
+        <div class="card">
+    <h3>Tally Prime</h3>
+    <p>Learn accounting, GST, inventory and business management using Tally Prime.</p>
+    <a href="/enquiry/tally" class="btn">Enquire Now</a>
+</div>
+
+<div class="card">
+    <h3>MS Office</h3>
+    <p>Master Microsoft Word, Excel, PowerPoint and Office productivity tools.</p>
+    <a href="/enquiry/msoffice" class="btn">Enquire Now</a>
+</div>
+
+<div class="card">
+    <h3>Hardware & Software Training</h3>
+    <p>Computer hardware installation, troubleshooting and software maintenance.</p>
+     <a href="/enquiry/hardware" class="btn">Enquire Now</a>
+</div>
+
+<div class="card">
+    <h3>Spoken English</h3>
+    <p>Improve communication, grammar, vocabulary and interview skills.</p>
+     <a href="/enquiry/spokenenglish" class="btn">Enquire Now</a>
+</div>
+
+    </div>
+
+</section>
+
+<section class="why-us">
+
+    <h2>Why Choose Us?</h2>
+
+    <div class="features">
+
+        <div class="feature-box">
+            <h3>Expert Trainers</h3>
+            <p>Learn from experienced professionals.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Practical Learning</h3>
+            <p>Hands-on training with real projects.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Internship Support</h3>
+            <p>Industry-level exposure and guidance.</p>
+        </div>
+
+        <div class="feature-box">
+            <h3>Career Guidance</h3>
+            <p>Resume preparation and interview support.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="contact" class="contact">
+
+    <h2>Contact Us</h2>
+
+    <div class="contact-details">
+
+        <p>
+            1/8 First Floor, Lovely Arcade Complex,</p>
+          <p>  V.O.C Road, Opp to Selvi Petrol Bunk,</p>
+
+          <p>  Karaikudi - 630001</p>
+        
+
+        <p>
+            Mobile: +91 9159315900
+        </p>
+
+        <p>
+            Telephone: 04565-255900
+        </p>
+
+        <p>
+            Email: techparkacademy.kkdi@gmail.com
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <p>
+        © 2026 Tech Park Academy. All Rights Reserved.
+    </p>
+
+</footer>
+
+</body>
+</html>

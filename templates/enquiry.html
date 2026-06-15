@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enquiry Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/enquiry.css') }}">
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <h1>{{ course|upper }} Enquiry</h1>
+
+    <form action="/submit" method="POST">
+
+        <input type="hidden"
+               name="course"
+               value="{{ course }}">
+
+        <input type="text"
+               name="name"
+               placeholder="Enter Your Name"
+               required>
+
+        <input type="email"
+               name="email"
+               placeholder="Enter Email Address"
+               required>
+
+        <input type="text"
+               name="phone"
+               placeholder="Enter Mobile Number"
+               required>
+
+        <button type="submit">
+            Submit Enquiry
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
