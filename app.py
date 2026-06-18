@@ -2,6 +2,12 @@ from flask import Flask, render_template, request, redirect
 import sqlite3
 import smtplib
 from email.mime.text import MIMEText
+import os
+
+
+EMAIL_USER = os.getenv("EMAIL_USER")
+EMAIL_PASS = os.getenv("EMAIL_PASS")
+
 
 app = Flask(__name__)
 
@@ -48,13 +54,15 @@ def submit():
 
     cur.execute(
         "INSERT INTO enquiries(name,email,phone,course) VALUES(?,?,?,?)",
-        (name,email,phone,course)
+        (name, email, phone, course)
     )
 
     conn.commit()
     conn.close()
 
     msg = MIMEText(f"""
+
+
     New Enquiry
 
     Name: {name}
@@ -63,22 +71,31 @@ def submit():
     Course: {course}
     """)
 
-  #  msg['Subject'] = "New Course Enquiry"
-   # msg['From'] = "techparkacademy.kkdi@gmail.com"
-    #msg['To'] = "techparkacademy.kkdi@gmail.com"
 
-   # server = smtplib.SMTP('smtp.gmail.com', 587)
-   # server.starttls()
+    msg['Subject'] = "New Course Enquiry"
+    msg['From'] = EMAIL_USER
+    msg['To'] = EMAIL_USER
 
-   # server.login(
-   # "techparkacademy.kkdi@gmail.com",
-   # "vain oeth nfqr fwfr"
-   # )
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=20)
+        server.starttls()
 
-   # server.send_message(msg)
-   # server.quit()
+        server.login(
+            EMAIL_USER,
+            EMAIL_PASS
+        )
+
+        server.send_message(msg)
+        server.quit()
+
+        print("Email sent successfully")
+
+    except Exception as e:
+        print("Email Error:", e)
 
     return render_template("thankyou.html", name=name)
+
+
 
 @app.route('/course/<course>')
 def course(course):
