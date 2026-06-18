@@ -77,8 +77,8 @@ def submit():
 
 
     msg['Subject'] = "New Course Enquiry"
-    msg['From'] = EMAIL_USER
-    msg['To'] = EMAIL_USER
+    msg['From'] = "techparkacademy.kkdi@gmail.com"
+    msg['To'] = "techparkacademy.kkdi@gmail.com"
 
     try:
         server = smtplib.SMTP('smtp-relay.brevo.com', 587)
