@@ -63,20 +63,20 @@ def submit():
     Course: {course}
     """)
 
-    msg['Subject'] = "New Course Enquiry"
-    msg['From'] = "techparkacademy.kkdi@gmail.com"
-    msg['To'] = "techparkacademy.kkdi@gmail.com"
+  #  msg['Subject'] = "New Course Enquiry"
+   # msg['From'] = "techparkacademy.kkdi@gmail.com"
+    #msg['To'] = "techparkacademy.kkdi@gmail.com"
 
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
+   # server = smtplib.SMTP('smtp.gmail.com', 587)
+   # server.starttls()
 
-    server.login(
-    "techparkacademy.kkdi@gmail.com",
-    "vain oeth nfqr fwfr"
-    )
+   # server.login(
+   # "techparkacademy.kkdi@gmail.com",
+   # "vain oeth nfqr fwfr"
+   # )
 
-    server.send_message(msg)
-    server.quit()
+   # server.send_message(msg)
+   # server.quit()
 
     return render_template("thankyou.html", name=name)
 
