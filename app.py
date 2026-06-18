@@ -4,9 +4,13 @@ import smtplib
 from email.mime.text import MIMEText
 import os
 
+import os
 
-EMAIL_USER = os.getenv("EMAIL_USER")
-EMAIL_PASS = os.getenv("EMAIL_PASS")
+BREVO_LOGIN = os.getenv("BREVO_LOGIN")
+BREVO_PASSWORD = os.getenv("BREVO_PASSWORD")
+
+#EMAIL_USER = os.getenv("EMAIL_USER")
+#EMAIL_PASS = os.getenv("EMAIL_PASS")
 
 
 app = Flask(__name__)
@@ -77,12 +81,12 @@ def submit():
     msg['To'] = EMAIL_USER
 
     try:
-        server = smtplib.SMTP('smtp.gmail.com', 587, timeout=20)
+        server = smtplib.SMTP('smtp-relay.brevo.com', 587)
         server.starttls()
 
         server.login(
-            EMAIL_USER,
-            EMAIL_PASS
+            BREVO_LOGIN,
+            BREVO_PASSWORD
         )
 
         server.send_message(msg)
@@ -91,7 +95,24 @@ def submit():
         print("Email sent successfully")
 
     except Exception as e:
-        print("Email Error:", e)
+            print("Email Error:", e)
+
+    #try:
+        #server = smtplib.SMTP('smtp.gmail.com', 587, timeout=20)
+        #server.starttls()
+
+        #server.login(
+            #EMAIL_USER,
+            #EMAIL_PASS
+        #)
+
+       # server.send_message(msg)
+        #server.quit()
+
+       # print("Email sent successfully")
+
+    #except Exception as e:
+      #  print("Email Error:", e)
 
     return render_template("thankyou.html", name=name)
 
