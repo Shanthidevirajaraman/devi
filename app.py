@@ -1,19 +1,12 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 import sqlite3
-import smtplib
-from email.mime.text import MIMEText
 import os
-
-import os
-
-BREVO_LOGIN = os.getenv("BREVO_LOGIN")
-BREVO_PASSWORD = os.getenv("BREVO_PASSWORD")
-
-#EMAIL_USER = os.getenv("EMAIL_USER")
-#EMAIL_PASS = os.getenv("EMAIL_PASS")
-
+import requests
 
 app = Flask(__name__)
+
+# Brevo API Key
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
 
 # Create table automatically
 def init_db():
@@ -35,6 +28,7 @@ def init_db():
 
 init_db()
 
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -53,6 +47,7 @@ def submit():
     phone = request.form['phone']
     course = request.form['course']
 
+    # Save to database
     conn = sqlite3.connect('academy.db')
     cur = conn.cursor()
 
@@ -64,58 +59,52 @@ def submit():
     conn.commit()
     conn.close()
 
-    msg = MIMEText(f"""
-
-
-    New Enquiry
-
-    Name: {name}
-    Email: {email}
-    Phone: {phone}
-    Course: {course}
-    """)
-
-
-    msg['Subject'] = "New Course Enquiry"
-    msg['From'] = "techparkacademy.kkdi@gmail.com"
-    msg['To'] = "techparkacademy.kkdi@gmail.com"
-
+    # Send Email using Brevo API
     try:
-        server = smtplib.SMTP('smtp-relay.brevo.com', 587)
-        server.starttls()
 
-        server.login(
-            BREVO_LOGIN,
-            BREVO_PASSWORD
+        url = "https://api.brevo.com/v3/smtp/email"
+
+        headers = {
+            "accept": "application/json",
+            "api-key": BREVO_API_KEY,
+            "content-type": "application/json"
+        }
+
+        data = {
+            "sender": {
+                "name": "Tech Park Academy",
+                "email": "techparkacademy.kkdi@gmail.com"
+            },
+            "to": [
+                {
+                    "email": "techparkacademy.kkdi@gmail.com"
+                }
+            ],
+            "subject": "New Course Enquiry",
+            "htmlContent": f"""
+            <h2>New Enquiry</h2>
+
+            <p><b>Name:</b> {name}</p>
+            <p><b>Email:</b> {email}</p>
+            <p><b>Phone:</b> {phone}</p>
+            <p><b>Course:</b> {course}</p>
+            """
+        }
+
+        response = requests.post(
+            url,
+            json=data,
+            headers=headers,
+            timeout=20
         )
 
-        server.send_message(msg)
-        server.quit()
-
-        print("Email sent successfully")
+        print("Brevo Response:", response.status_code)
+        print(response.text)
 
     except Exception as e:
-            print("Email Error:", e)
-
-    #try:
-        #server = smtplib.SMTP('smtp.gmail.com', 587, timeout=20)
-        #server.starttls()
-
-        #server.login(
-            #EMAIL_USER,
-            #EMAIL_PASS
-        #)
-
-       # server.send_message(msg)
-        #server.quit()
-
-       # print("Email sent successfully")
-
-    #except Exception as e:
-      #  print("Email Error:", e)
+        print("Email Error:", e)
 
     return render_template("thankyou.html", name=name)
-
 
 
 @app.route('/course/<course>')
