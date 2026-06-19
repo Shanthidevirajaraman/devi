@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request
-from dotenv import load_dotenv
+
 import sqlite3
 import os
 import requests
 
 
 
-load_dotenv()
 
 app = Flask(__name__)
 
