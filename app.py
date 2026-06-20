@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
 
 import sqlite3
 import os
@@ -8,6 +8,10 @@ import requests
 
 
 app = Flask(__name__)
+app.secret_key = "techpark_admin_2026"
+
+ADMIN_USER = "admin"
+ADMIN_PASS = "TechPark@123"
 
 # Brevo API Key
 BREVO_API_KEY = os.getenv("BREVO_API_KEY")
@@ -118,8 +122,11 @@ def course(course):
     return render_template('course_details.html', course=course)
 
 
-@app.route('/admin')
+@app.route('/techpark_admin_secure_2026')
 def admin():
+
+    if not session.get('admin'):
+        return redirect('/login')
 
     conn = sqlite3.connect('academy.db')
     cur = conn.cursor()
@@ -130,6 +137,31 @@ def admin():
     conn.close()
 
     return render_template('admin.html', data=data)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+
+    if request.method == 'POST':
+
+        username = request.form['username']
+        password = request.form['password']
+
+        if username == ADMIN_USER and password == ADMIN_PASS:
+
+            session['admin'] = True
+            return redirect('/techpark_admin_secure_2026')
+
+        return "Invalid Username or Password"
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+
+    session.clear()
+
+    return redirect('/login')
 
 
 if __name__ == '__main__':

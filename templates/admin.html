@@ -1,35 +1,18 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Admin</title>
+    <title>TechPark Academy - Admin Dashboard</title>
+
+     <style> body{ font-family: Arial, sans-serif; background:#f4f6f9; margin:0; padding:20px; } .header{ background:#c62828; color:white; padding:20px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; } .header h1{ margin:0; } .header p{ margin:5px 0 0 0; } .logout-btn{ background:white; color:#c62828; text-decoration:none; padding:10px 20px; border-radius:5px; font-weight:bold; } .logout-btn:hover{ background:#eeeeee; } .card{ background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); text-align:center; margin-bottom:20px; } .card h2{ color:#c62828; margin:0; font-size:36px; } .table-container{ background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.1); } table{ width:100%; border-collapse:collapse; } th{ background:#c62828; color:white; padding:12px; } td{ padding:10px; border-bottom:1px solid #ddd; text-align:center; } tr:hover{ background:#f9f9f9; } .course-badge{ background:#c62828; color:white; padding:5px 10px; border-radius:15px; font-size:12px; } h3{ margin-top:0; color:#333; } </style>
+
 </head>
+
 <body>
 
-<h1>Student Enquiries</h1>
-
-<table border="1">
-
-<tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Course</th>
-</tr>
-
-{% for row in data %}
-
-<tr>
-    <td>{{ row[0] }}</td>
-    <td>{{ row[1] }}</td>
-    <td>{{ row[2] }}</td>
-    <td>{{ row[3] }}</td>
-    <td>{{ row[4] }}</td>
-</tr>
-
-{% endfor %}
-
-</table>
+    <!-- Page Content Here -->
+     <div class="header"> <div> <h1>TECHPARK ACADEMY</h1> <p>Student Enquiry Dashboard</p> </div> <a href="/logout" class="logout-btn">Logout</a> </div> <div class="card"> <h2>{{ data|length }}</h2> <p>Total Student Enquiries</p> </div> <div class="table-container"> <h3>Student Enquiries</h3> <table> <tr> <th>ID</th> <th>Name</th> <th>Email</th> <th>Phone</th> <th>Course</th> </tr> {% for row in data %} <tr> <td>{{ row[0] }}</td> <td>{{ row[1] }}</td> <td>{{ row[2] }}</td> <td>{{ row[3] }}</td> <td> <span class="course-badge"> {{ row[4] }} </span> </td> </tr> {% endfor %} </table> </div>
 
 </body>
+
 </html>

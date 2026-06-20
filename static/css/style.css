@@ -215,33 +215,41 @@ body{
     margin-bottom:10px;
 }
 
-/* CONTACT */
+.contact-details{
+    background:white;
+    max-width:800px;
+    margin:auto;
+    padding:40px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
 
-.contact{
-    padding:80px 10%;
-    text-align:center;
+.contact-row{
+    display:flex;
+    margin-bottom:20px;
+    align-items:flex-start;
+}
+
+.label{
+    width:140px;
+    font-weight:bold;
+    color:#8B0000;
+    font-size:20px;
+}
+
+.value{
+    flex:1;
+    font-size:18px;
+    line-height:1.8;
+    color:#333;
 }
 
 .contact h2{
-    color:#8b0000;
-    font-size:40px;
-    margin-bottom:30px;
+    text-align:center;
+    color:#8B0000;
+    margin-bottom:40px;
+    font-size:42px;
 }
-
-.contact-details{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    max-width:800px;
-    margin:auto;
-}
-
-.contact-details p{
-    margin-bottom:12px;
-    font-size:18px;
-}
-
 /* FOOTER */
 
 footer{
