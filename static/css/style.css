@@ -21,7 +21,7 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 50px;
+    padding:10px 50px;
 
     position:fixed;
     top:0;
@@ -37,11 +37,11 @@ body{
 }
 
 .logo-section img{
-    width:80px;
-    height:auto;
+    width:auto;
+    height:50px;
     background:white;
     border-radius:8px;
-    padding:4px;
+    padding:2px;
 }
 
 .logo-section h2{

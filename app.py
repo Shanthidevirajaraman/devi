@@ -16,7 +16,7 @@ ADMIN_PASS = "TechPark@123"
 # Brevo API Key
 BREVO_API_KEY = os.getenv("BREVO_API_KEY")
 
-print("API KEY:", BREVO_API_KEY)
+#print("API KEY:", BREVO_API_KEY)
 
 # Create table automatically
 def init_db():
