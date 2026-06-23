@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, Response
 
 import sqlite3
 import os
@@ -155,6 +155,38 @@ def login():
         return "Invalid Username or Password"
 
     return render_template('login.html')
+@app.route('/sitemap.xml')
+def sitemap():
+    xml = """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://www.techparkacademy.co.in/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://www.techparkacademy.co.in/course/python</loc>
+    </url>
+
+    <url>
+        <loc>https://www.techparkacademy.co.in/course/dotnet</loc>
+    </url>
+
+</urlset>
+"""
+    return Response(xml, mimetype='application/xml')
+
+
+@app.route('/robots.txt')
+def robots():
+    robots_text = """
+User-agent: *
+Allow: /
+
+Sitemap: https://www.techparkacademy.co.in/sitemap.xml
+"""
+    return Response(robots_text, mimetype='text/plain')
 
 @app.route('/logout')
 def logout():
